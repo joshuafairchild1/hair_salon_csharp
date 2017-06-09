@@ -17,7 +17,30 @@ namespace HairSalon.Objects
 
     public static List<Stylist> GetAll()
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Stylist> allStylists = new List<Stylist>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Stylist newStylist = new Stylist(name, id);
+        allStylists.Add(newStylist);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return allStylists;
     }
   }
 }
