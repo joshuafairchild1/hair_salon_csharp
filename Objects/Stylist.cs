@@ -127,5 +127,10 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public static Stylist Find(int idToFInd)
+    {
+      return null;
+    }
   }
 }
