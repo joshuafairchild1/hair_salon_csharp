@@ -1,0 +1,22 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<h2>Viewing clients for: @Model["stylist"].GetName()</h2>
+@if(Model["clients"].Count == 0)
+{
+  <h3>@Model["stylist"].GetName() does not currently have any clients.</h3>
+}
+else
+{
+  @foreach(var client in Model["clients"])
+  {
+    <h3>@client.GetName() | <a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/edit'><span class="btn btn-xs">Edit</span></a></h3>
+  }
+}
+<form action='/stylists/@Model["stylist"].GetId()/clients/new' method="get">
+  <input type="hidden" name="form-type" value="client">
+  <button type="submit" class="btn btn-primary">Add a new client</button>
+</form>
+
+<p class="text-center"><a href="/"><span class="btn btn-primary">Home</span></a></p>

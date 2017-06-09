@@ -5,9 +5,9 @@
 <div class="row">
   <div class="col-sm-6 text-center">
     <h2 class="text-left">Stylists:</h2>
-    @if(Model.Count == 0)
+    @if(@Model.Count == 0)
     {
-      <h3>There are currently no stylists on the schedule. Would you like to <a href="/stylists/new">add one?</a></h3>
+      <h3>There are currently no stylists on the schedule. Would you like to</h3>
     }
     else
     {
@@ -18,6 +18,9 @@
     }
   </div>
   <div class="col-sm-6">
-    <h3>Buttons and stuff go here?</h3>
+    <form action="/stylist/new" method="get">
+      <button type='button' class="btn btn-primary">Add Stylist</button>
+      <input type="hidden" name="form-type" value="stylist">
+    </form>
   </div>
 </div>
