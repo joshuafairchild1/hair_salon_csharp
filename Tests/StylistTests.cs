@@ -24,6 +24,15 @@ namespace HairSalon.Objects
       Assert.Equal(controlList, allStylists);
     }
 
+    [Fact]
+    public void Stylist_Equals_ReturnTrueWhenEqual()
+    {
+      Stylist stylist1 = new Stylist("John Smith", "(123)-456-7890");
+      Stylist stylist2 = new Stylist("John Smith", "(123)-456-7890");
+
+      Assert.Equal(stylist1, stylist2);
+    }
+
     public void Dispose()
     {
 

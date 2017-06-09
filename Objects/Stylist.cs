@@ -7,11 +7,13 @@ namespace HairSalon.Objects
   public class Stylist
   {
     private string _name;
+    string _telephone;
     private int _id;
 
-    public Stylist(string name, int id = 0)
+    public Stylist(string name, string telephone, int id = 0)
     {
       _name = name;
+      _telephone = telephone;
       _id = id;
     }
 
@@ -28,7 +30,8 @@ namespace HairSalon.Objects
       {
         int id = rdr.GetInt32(0);
         string name = rdr.GetString(1);
-        Stylist newStylist = new Stylist(name, id);
+        string telephone = rdr.GetString(2);
+        Stylist newStylist = new Stylist(name, telephone, id);
         allStylists.Add(newStylist);
       }
 
