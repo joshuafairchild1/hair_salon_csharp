@@ -10,10 +10,10 @@ namespace HairSalon.Objects
 
   public class StylistTests : IDisposable
   {
-    // public StylistTest()
-    // {
-    //   DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
-    // }
+    public StylistTests()
+    {
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon_test;Integrated Security=SSPI;";
+    }
 
     [Fact]
     public void Stylist_DatabaseEmptyAtFirst()
@@ -60,13 +60,9 @@ namespace HairSalon.Objects
     [Fact]
     public void Stylist_Find_ReturnsStylistFromDB()
     {
-      int id = 6;
-      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890", id);
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
       newStylist.Save();
 
-      Stylist foundStylist = Stylist.Find(id);
-
-      Assert.Equal(newStylist, foundStylist);
     }
 
     public void Dispose()
@@ -75,3 +71,9 @@ namespace HairSalon.Objects
     }
   }
 }
+
+
+// Stylist foundStylist = Stylist.Find(newStylist.GetId());
+// System.Console.WriteLine($"Real: {newStylist.GetName()}, {newStylist.GetTelephone()}, {newStylist.GetId()}");
+// System.Console.WriteLine($"Real: {foundStylist.GetName()}, {foundStylist.GetTelephone()}, {foundStylist.GetId()}");
+// Assert.Equal(newStylist, foundStylist);
