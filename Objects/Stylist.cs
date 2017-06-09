@@ -94,7 +94,7 @@ namespace HairSalon.Objects
 
       SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, telephone) OUTPUT INSERTED.id VALUES (@StylistName, @StylistTelephone);", conn);
       SqlParameter nameParam = new SqlParameter("@StylistName", this.GetName());
-      SqlParameter telephoneParam = new SqlParameter("@Stylisttelephone", this.GetTelephone());
+      SqlParameter telephoneParam = new SqlParameter("@StylistTelephone", this.GetTelephone());
       cmd.Parameters.Add(nameParam);
       cmd.Parameters.Add(telephoneParam);
       SqlDataReader rdr = cmd.ExecuteReader();

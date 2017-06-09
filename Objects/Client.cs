@@ -102,7 +102,31 @@ namespace HairSalon.Objects
 
     public void Save()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, telephone, stylist_id) OUTPUT INSERTED.id VALUES (@StylistName, @StylistTelephone, @StylistId);", conn);
+      SqlParameter nameParam = new SqlParameter("@StylistName", this.GetName());
+      SqlParameter telephoneParam = new SqlParameter("@StylistTelephone", this.GetTelephone());
+      SqlParameter stylistIdParam = new SqlParameter("@StylistId", this.GetStylistId());
+      cmd.Parameters.Add(nameParam);
+      cmd.Parameters.Add(telephoneParam);
+      cmd.Parameters.Add(stylistIdParam);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }
