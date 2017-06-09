@@ -120,6 +120,28 @@ namespace HairSalon.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Stylist_Update_UpdatesName()
+    {
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
+      newStylist.Save();
+
+      newStylist.Update("John Locke", "(481)-347-1234");
+
+      Assert.Equal("John Locke", newStylist.GetName());
+    }
+
+    [Fact]
+    public void Stylist_Update_UpdatesTelephone()
+    {
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
+      newStylist.Save();
+
+      newStylist.Update("John Locke", "(481)-347-1234");
+
+      Assert.Equal("(481)-347-1234", newStylist.GetTelephone());
+    }
+
     public void Dispose()
     {
       Stylist.DeleteAll();

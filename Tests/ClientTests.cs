@@ -79,7 +79,6 @@ namespace HairSalon.Objects
       newClient.Update("John Locke", "(481)-347-1234");
 
       Assert.Equal("John Locke", newClient.GetName());
-      Assert.Equal("(481)-347-1234", newClient.GetTelephone());
     }
 
     [Fact]

@@ -228,5 +228,37 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public void Update(string name, string telephone)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @StylistName, telephone = @StylistTelephone OUTPUT INSERTED.name, INSERTED.telephone WHERE id = @StylistId;", conn);
+
+      SqlParameter nameParam = new SqlParameter("@StylistName", name);
+      SqlParameter telephoneParam = new SqlParameter("@StylistTelephone", telephone);
+      SqlParameter idParam = new SqlParameter("@StylistId", this.GetId());
+
+      cmd.Parameters.Add(nameParam);
+      cmd.Parameters.Add(telephoneParam);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+        this._telephone = rdr.GetString(1);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }
