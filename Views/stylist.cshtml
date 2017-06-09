@@ -2,33 +2,47 @@
     Layout="Shared/_Layout.cshtml";
 }
 
-<h1 class="text-center">Stylist: @Model["stylist"].GetName() |  <form action='/stylists/@Model["stylist"].GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="stylist-edit"><button type="submit" class="btn btn-sm btn-primary">Edit</button></form></h1>
-<li class="text-center"><h3>Telephone: @Model["stylist"].GetTelephone()</h3></li>
-<h2>Clients:</h2>
-<hr>
-@if(Model["clients"].Count == 0)
-{
-  <h3>@Model["stylist"].GetName() does not currently have any clients.</h3>
-}
-else
-{
-  @foreach(var client in Model["clients"])
-  {
-    <h3>@client.GetName() | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="client-edit"><button type="submit" class="btn btn-xs btn-primary">Edit</button></form> | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/delete' method="post" class="inline-form"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-xs btn-danger">Delete</button></form></h3>
-    <h4>Telephone: @client.GetTelephone()</h4>
-  }
-}
-<form action='/stylists/@Model["stylist"].GetId()/clients/new' method="get">
-  <input type="hidden" name="form-type" value="client">
-  <button type="submit" class="btn btn-primary">Add a new client</button>
-</form>
-<form action='/stylist/@Model["stylist"].GetId()/deleted' method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type='submit' class="btn btn-danger">Delete this stylist</button>
-</form>
-<form action='/stylist/@Model["stylist"].GetId()/clients/deleted' method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type='submit' class="btn btn-danger">Delete this stylist's clients</button>
-</form>
+<div class="well custom-well">
+  <div id='stylist-name' class="text-center">
+    <h1>Stylist: @Model["stylist"].GetName() |  <form action='/stylists/@Model["stylist"].GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="stylist-edit"><button type="submit" class="btn btn-sm btn-primary">Edit</button></form></h1>
+    <h3>Telephone: @Model["stylist"].GetTelephone()</h3>
+  </div>
 
-<p class="text-center"><a href="/"><span class="btn btn-primary">Home</span></a></p>
+  <h2>Clients:</h2>
+  <hr>
+  @if(Model["clients"].Count == 0)
+  {
+    <h3>@Model["stylist"].GetName() does not currently have any clients.</h3>
+  }
+  else
+  {
+    @foreach(var client in Model["clients"])
+    {
+      <h3>@client.GetName() | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="client-edit"><button type="submit" class="btn btn-xs btn-primary">Edit</button></form> | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/delete' method="post" class="inline-form"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-xs btn-danger">Delete</button></form></h3>
+      <h4>Telephone: @client.GetTelephone()</h4>
+    }
+  }
+</div>
+
+<center class="under-well-btn">
+  <div id="stylist-btns-bar">
+
+    <form class="inline-form" action='/stylist/@Model["stylist"].GetId()/deleted' method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type='submit' class="btn btn-danger">Delete this stylist</button>
+    </form>
+
+    <form class="inline-form" action='/stylists/@Model["stylist"].GetId()/clients/new' method="get">
+      <input type="hidden" name="form-type" value="client">
+      <button type="submit" class="btn btn-primary">Add a new client</button>
+    </form>
+
+    <form class="inline-form" action='/stylist/@Model["stylist"].GetId()/clients/deleted' method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type='submit' class="btn btn-danger">Delete this stylist's clients</button>
+    </form>
+
+    <a href="/"><span class="btn btn-primary">Home</span></a>
+    
+  </div>
+</center>
