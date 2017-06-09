@@ -23,6 +23,14 @@ namespace HairSalon.Objects
       Assert.Equal(controlList, allClients);
     }
 
+    [Fact]
+    public void Client_Equals_ReturnTrueWhenEqual()
+    {
+      Client client1 = new Client("Tom Smith", "(555)-123-4567", 1);
+      Client client2 = new Client("Tom Smith", "(555)-123-4567", 1);
+
+      Assert.Equal(client1, client2);
+    }
 
     public void Dispose()
     {
