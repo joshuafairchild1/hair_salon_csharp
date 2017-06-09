@@ -22,5 +22,9 @@ else
   <input type="hidden" name="_method" value="DELETE">
   <button type='submit' class="btn btn-danger">Delete this stylist</button>
 </form>
+<form action='/stylist/@Model["stylist"].GetId()/clients/deleted' method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type='submit' class="btn btn-danger">Delete this stylist's clients</button>
+</form>
 
 <p class="text-center"><a href="/"><span class="btn btn-primary">Home</span></a></p>
