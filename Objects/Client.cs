@@ -180,5 +180,10 @@ namespace HairSalon.Objects
 
       return foundClient;
     }
+
+    public void Update(string newName, string newNumber)
+    {
+
+    }
   }
 }
