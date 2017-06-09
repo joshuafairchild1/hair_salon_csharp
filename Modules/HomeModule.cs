@@ -50,6 +50,14 @@ namespace HairSalon
         model.Add("stylist", selectedStylist);
         return View["form.cshtml", model];
       };
+      Get["/stylists/{stylistId}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        string formType = Request.Query["form-type"];
+        Stylist selectedStylist = Stylist.Find(parameters.stylistId);
+        model.Add("form-type", formType);
+        model.Add("stylist", selectedStylist);
+        return View["form.cshtml", model];
+      };
       Post["/"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-telephone"]);
         newStylist.Save();
@@ -101,6 +109,15 @@ namespace HairSalon
         Stylist selectedStylist = Stylist.Find(parameters.stylistId);
         Client selectedClient = Client.Find(parameters.clientId);
         selectedClient.Update(Request.Form["client-name"], Request.Form["client-telephone"]);
+        List<Client> selectedClients = selectedStylist.GetClients();
+        model.Add("clients", selectedClients);
+        model.Add("stylist", selectedStylist);
+        return View["stylist.cshtml", model];
+      };
+      Patch["/stylists/{stylistId}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Stylist selectedStylist = Stylist.Find(parameters.stylistId);
+        selectedStylist.Update(Request.Form["stylist-name"], Request.Form["stylist-telephone"]);
         List<Client> selectedClients = selectedStylist.GetClients();
         model.Add("clients", selectedClients);
         model.Add("stylist", selectedStylist);

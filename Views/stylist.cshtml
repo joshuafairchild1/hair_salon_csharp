@@ -2,7 +2,10 @@
     Layout="Shared/_Layout.cshtml";
 }
 
-<h2>Viewing clients for: @Model["stylist"].GetName()</h2>
+<h1 class="text-center">Stylist: @Model["stylist"].GetName() |  <form action='/stylists/@Model["stylist"].GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="stylist-edit"><button type="submit" class="btn btn-sm btn-primary">Edit</button></form></h1>
+<li class="text-center"><h3>Telephone: @Model["stylist"].GetTelephone()</h3></li>
+<h2>Clients:</h2>
+<hr>
 @if(Model["clients"].Count == 0)
 {
   <h3>@Model["stylist"].GetName() does not currently have any clients.</h3>
