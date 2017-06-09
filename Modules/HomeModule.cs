@@ -61,6 +61,12 @@ namespace HairSalon
         List<Stylist> allStylists = Stylist.GetAll();
         return View["index.cshtml", allStylists];
       };
+      Delete["/stylist/{id}/deleted"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        selectedStylist.Delete();
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["index.cshtml", allStylists];
+      };
     }
   }
 }

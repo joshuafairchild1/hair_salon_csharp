@@ -14,8 +14,12 @@ else
     <h3><a href="/stylists/@stylist.GetId()">@stylist.GetName()</a></h3>
   }
 }
-<form action="/stylist/new" method="get">
-  <button type='button' class="btn btn-primary">Add stylist</button>
+<form action="/stylists/new" method="get">
+  <button type='submit' class="btn btn-primary">Add stylist</button>
   <input type="hidden" name="form-type" value="stylist">
 </form>
-<a href="/stylists/delete"><span class="btn btn-danger">Delete all stylists</span></a>
+
+@if(Model.Count != 0)
+{
+  <a href="/stylists/delete"><span class="btn btn-danger">Delete all stylists</span></a>
+}
