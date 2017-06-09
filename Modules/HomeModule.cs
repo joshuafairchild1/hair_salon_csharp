@@ -58,6 +58,14 @@ namespace HairSalon
         model.Add("stylist", selectedStylist);
         return View["form.cshtml", model];
       };
+      Get["/stylists/search"] = _ => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        string searchQuery = Request.Query["search-query"];
+        List<Stylist> matches = Stylist.SearchByName(searchQuery);
+        model.Add("search-query", searchQuery);
+        model.Add("matches", matches);
+        return View["results.cshtml", model];
+      };
       Post["/"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-telephone"]);
         newStylist.Save();

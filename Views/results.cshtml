@@ -1,0 +1,19 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+<div class="well custom-well">
+  <h2 class="text-center">Results</h2>
+  <h3>Your search of "@Model["search-query"]" turned up @Model["matches"].Count result<span>@if(Model["matches"].Count != 1){<span>s</span>}</span>@if(@Model["matches"].Count > 0){<span>:</span>}</h3>
+  <div class="well-content">
+    @foreach(var stylist in Model["matches"])
+    {
+      <ul class="well-content">
+        <li><h3><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></h3></li>
+      </ul>
+    }
+  </div>
+</div>
+
+<center>
+  <a href="/"><span class="btn btn-primary under-well-btn">Home</span></a>
+</center>
