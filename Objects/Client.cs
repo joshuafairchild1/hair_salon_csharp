@@ -53,6 +53,23 @@ namespace HairSalon.Objects
       _stylistId = newStylistId;
     }
 
+    public override bool Equals(System.Object otherClient)
+    {
+      if(!(otherClient is Client))
+      {
+        return false;
+      }
+      else
+      {
+        Client newClient = (Client) otherClient;
+        bool idEquality = this.GetId() == newClient.GetId();
+        bool nameEquality = this.GetName() == newClient.GetName();
+        bool telephoneEquality = this.GetTelephone() == newClient.GetTelephone();
+        bool stylistIdEquality = this.GetStylistId() == newClient.GetStylistId();
+        return (idEquality && nameEquality && telephoneEquality && stylistIdEquality);
+      }
+    }
+
     public static List<Client> GetAll()
     {
       SqlConnection conn = DB.Connection();
