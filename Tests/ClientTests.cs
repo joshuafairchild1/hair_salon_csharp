@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 namespace HairSalon.Objects
 {
   // [Collection("HairSalon")]
-
+  //
   // public class ClientTests : IDisposable
   // {
   //   public ClientTest()
