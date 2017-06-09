@@ -142,6 +142,22 @@ namespace HairSalon.Objects
       Assert.Equal("(481)-347-1234", newStylist.GetTelephone());
     }
 
+    [Fact]
+    public void Stylist_Delete_DeletesSingleStylist()
+    {
+      Stylist stylist1 = new Stylist("John Smith", "(123)-456-7890");
+      stylist1.Save();
+      Stylist stylist2 = new Stylist("Smith John", "(555)-342-5444");
+      stylist2.Save();
+
+      stylist1.Delete();
+
+      List<Stylist> controlList = new List<Stylist>{stylist2};
+      List<Stylist> testList = Stylist.GetAll();
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Stylist.DeleteAll();

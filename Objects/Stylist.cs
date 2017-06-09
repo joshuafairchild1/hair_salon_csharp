@@ -260,5 +260,10 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public void Delete()
+    {
+
+    }
   }
 }
