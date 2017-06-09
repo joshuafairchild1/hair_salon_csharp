@@ -166,12 +166,52 @@ namespace HairSalon.Objects
 
     public void DeleteClients()
     {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
+
+      SqlParameter idParam = new SqlParameter("@StylistId", this.GetId());
+      cmd.Parameters.Add(idParam);
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public List<Client> GetClients()
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+      SqlParameter idParam = new SqlParameter("@StylistId", this.GetId());
+      cmd.Parameters.Add(idParam);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Client> allClients = new List<Client>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        string telephone = rdr.GetString(2);
+        int stylistId = rdr.GetInt32(3);
+        Client newClient = new Client(name, telephone, stylistId, id);
+        allClients.Add(newClient);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return allClients;
     }
   }
 }
