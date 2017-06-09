@@ -145,7 +145,40 @@ namespace HairSalon.Objects
 
     public static Client Find(int idToFind)
     {
-      return null;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
+      SqlParameter idParam = new SqlParameter("@ClientId", idToFind);
+      cmd.Parameters.Add(idParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+
+      string name = null;
+      string telephone = null;
+      int stylistId = 0;
+      int id = 0;
+
+      while(rdr.Read())
+      {
+        id = rdr.GetInt32(0);
+        name = rdr.GetString(1);
+        telephone = rdr.GetString(2);
+        stylistId = rdr.GetInt32(3);
+      }
+      Client foundClient = new Client(name, telephone, stylistId, id);
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return foundClient;
     }
   }
 }
