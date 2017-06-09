@@ -33,6 +33,17 @@ namespace HairSalon.Objects
       Assert.Equal(stylist1, stylist2);
     }
 
+    [Fact]
+    public void Stylist_Save_SavesObjToDB()
+    {
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
+      newStylist.Save();
+
+      Stylist savedStylist = Stylist.GetAll()[0];
+
+      Assert.Equal(newStylist, savedStylist);
+    }
+
     public void Dispose()
     {
 

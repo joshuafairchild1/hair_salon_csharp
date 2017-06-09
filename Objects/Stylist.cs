@@ -86,5 +86,10 @@ namespace HairSalon.Objects
       }
       return allStylists;
     }
+
+    public void Save()
+    {
+
+    }
   }
 }
