@@ -62,7 +62,8 @@ namespace HairSalon.Objects
     {
       Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
       newStylist.Save();
-
+      Stylist foundStylist = Stylist.Find(newStylist.GetId());
+      Assert.Equal(newStylist, foundStylist);
     }
 
     public void Dispose()
@@ -73,7 +74,5 @@ namespace HairSalon.Objects
 }
 
 
-// Stylist foundStylist = Stylist.Find(newStylist.GetId());
 // System.Console.WriteLine($"Real: {newStylist.GetName()}, {newStylist.GetTelephone()}, {newStylist.GetId()}");
 // System.Console.WriteLine($"Real: {foundStylist.GetName()}, {foundStylist.GetTelephone()}, {foundStylist.GetId()}");
-// Assert.Equal(newStylist, foundStylist);
