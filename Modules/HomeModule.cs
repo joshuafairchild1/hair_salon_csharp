@@ -11,7 +11,7 @@ namespace HairSalon
   {
     public HomeModule()
     {
-
+      Get["/"] = _ => View["index.cshtml"];
     }
   }
 }
