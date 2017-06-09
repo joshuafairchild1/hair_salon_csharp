@@ -44,16 +44,25 @@ namespace HairSalon.Objects
     }
 
     [Fact]
-    public void Stylist_DeleteAll_RemovesAllStylistFromDB()
+    public void Client_DeleteAll_RemovesAllClientsFromDB()
     {
-      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
-      newStylist.Save();
+      Client newClient = new Client("Tom Smith", "(555)-123-4567", 1);
+      newClient.Save();
 
-      Stylist.DeleteAll();
-      List<Stylist> controlList = new List<Stylist>{};
-      List<Stylist> testList = Stylist.GetAll();
+      Client.DeleteAll();
+      List<Client> controlList = new List<Client>{};
+      List<Client> testList = Client.GetAll();
 
       Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void Client_Find_ReturnsClientFromDB()
+    {
+      Client newClient = new Client("Tom Smith", "(555)-123-4567", 1);
+      newClient.Save();
+      Client foundClient = Client.Find(newClient.GetId());
+      Assert.Equal(newClient, foundClient);
     }
 
     public void Dispose()

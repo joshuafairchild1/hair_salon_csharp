@@ -142,5 +142,10 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public static Client Find(int idToFind)
+    {
+      return null;
+    }
   }
 }
