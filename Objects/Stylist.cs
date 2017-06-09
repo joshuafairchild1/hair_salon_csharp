@@ -17,6 +17,47 @@ namespace HairSalon.Objects
       _id = id;
     }
 
+    public int GetId()
+    {
+      return _id;
+    }
+    public void SetId(int newId)
+    {
+      _id = newId;
+    }
+    public string GetName()
+    {
+      return _name;
+    }
+    public void SetName(string newName)
+    {
+      _name = newName;
+    }
+    public string GetTelephone()
+    {
+      return _telephone;
+    }
+    public void SetTelephone(string newTelephone)
+    {
+      _telephone = newTelephone;
+    }
+
+    public override bool Equals(System.Object otherStylist)
+    {
+      if(!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = this.GetId() == newStylist.GetId();
+        bool nameEquality = this.GetName() == newStylist.GetName();
+        bool telephoneEquality = this.GetTelephone() == newStylist.GetTelephone();
+        return (idEquality && nameEquality && telephoneEquality);
+      }
+    }
+
     public static List<Stylist> GetAll()
     {
       SqlConnection conn = DB.Connection();
