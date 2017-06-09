@@ -213,5 +213,20 @@ namespace HairSalon.Objects
 
       return allClients;
     }
+
+    public void DeleteClient(Client toDelete)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+      SqlParameter idParam = new SqlParameter("@ClientId", toDelete.GetId());
+      cmd.Parameters.Add(idParam);
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }
