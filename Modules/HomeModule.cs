@@ -18,6 +18,12 @@ namespace HairSalon
       Get["/stylists/new"] = _ => {
         return View["form.cshtml"];
       };
+      Post["/"] = _ => {
+        Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-telephone"]);
+        newStylist.Save();
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["index.cshtml", allStylists];
+      };
     }
   }
 }
