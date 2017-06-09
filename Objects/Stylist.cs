@@ -277,5 +277,10 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public static List<Stylist> SearchByName(string searchQuery)
+    {
+      return null;
+    }
   }
 }

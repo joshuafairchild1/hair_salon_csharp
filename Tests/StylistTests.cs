@@ -158,6 +158,22 @@ namespace HairSalon.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Stylist_SearchByName_ReturnsMatches()
+    {
+      Stylist stylist1 = new Stylist("JOHN SMITH", "(123)-456-7890");
+      stylist1.Save();
+      Stylist stylist2 = new Stylist("john smith", "(123)-456-7890");
+      stylist2.Save();
+      Stylist stylist3 = new Stylist("Jon Hamm", "(123)-456-7890");
+      stylist3.Save();
+
+      List<Stylist> controlList = new List<Stylist>{stylist1, stylist2};
+      List<Stylist> matches = Stylist.SearchByName("John Smith");
+
+      Assert.Equal(controlList, matches);
+    }
+
     public void Dispose()
     {
       Stylist.DeleteAll();
