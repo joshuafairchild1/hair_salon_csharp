@@ -113,5 +113,10 @@ namespace HairSalon.Objects
         conn.Close();
       }
     }
+
+    public static void DeleteAll()
+    {
+
+    }
   }
 }

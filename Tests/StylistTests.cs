@@ -44,6 +44,19 @@ namespace HairSalon.Objects
       Assert.Equal(newStylist, savedStylist);
     }
 
+    [Fact]
+    public void Stylist_DeleteAll_RemovesAllStylistFromDB()
+    {
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
+      newStylist.Save();
+
+      Stylist.DeleteAll();
+      List<Stylist> controlList = new List<Stylist>{};
+      List<Stylist> testList = Stylist.GetAll();
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
 
