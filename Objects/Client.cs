@@ -99,5 +99,10 @@ namespace HairSalon.Objects
       }
       return allClients;
     }
+
+    public void Save()
+    {
+      
+    }
   }
 }

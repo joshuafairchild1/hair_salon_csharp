@@ -32,6 +32,17 @@ namespace HairSalon.Objects
       Assert.Equal(client1, client2);
     }
 
+    [Fact]
+    public void Client_Save_SavesObjToDB()
+    {
+      Client newClient = new Client("Tom Smith", "(555)-123-4567", 1);
+      newClient.Save();
+
+      Client savedClient = Client.GetAll()[0];
+
+      Assert.Equal(newClient, savedClient);
+    }
+
     public void Dispose()
     {
 
