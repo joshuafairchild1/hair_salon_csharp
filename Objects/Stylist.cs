@@ -92,7 +92,7 @@ namespace HairSalon.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, telephone) OUTPUT INSERTED.id VALUES (@StylistName, @StylistTelephone)", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name, telephone) OUTPUT INSERTED.id VALUES (@StylistName, @StylistTelephone);", conn);
       SqlParameter nameParam = new SqlParameter("@StylistName", this.GetName());
       SqlParameter telephoneParam = new SqlParameter("@Stylisttelephone", this.GetTelephone());
       cmd.Parameters.Add(nameParam);
@@ -116,7 +116,16 @@ namespace HairSalon.Objects
 
     public static void DeleteAll()
     {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
   }
 }
