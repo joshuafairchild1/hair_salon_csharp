@@ -32,3 +32,19 @@ else if(Model["form-type"] == "client")
     <button type="submit" class="btn btn-primary btn-block">Add new client</button>
   </form>
 }
+else if(Model["form-type"] == "client-edit")
+{
+  <h3>Edit client: (@Model["client"].GetName())</h3>
+  <form action='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/edit' method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="form-group">
+      <label for="client-name">Name:</label>
+      <input type="text" name="client-name" class="form-control" value='@Model["client"].GetName()'>
+    </div>
+    <div class="form-group">
+      <label for="client-telephone">Telephone:</label>
+      <input type="text" name="client-telephone" class="form-control" value='@Model["client"].GetTelephone()'>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Update client info</button>
+  </form>
+}

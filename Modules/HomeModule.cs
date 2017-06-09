@@ -40,6 +40,16 @@ namespace HairSalon
       Get["/stylists/delete"] = _ => {
         return View["stylists_delete_confirmation.cshtml"];
       };
+      Get["/stylists/{stylistId}/clients/{clientId}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        string formType = Request.Query["form-type"];
+        Stylist selectedStylist = Stylist.Find(parameters.stylistId);
+        Client selectedClient = Client.Find(parameters.clientId);
+        model.Add("form-type", formType);
+        model.Add("client", selectedClient);
+        model.Add("stylist", selectedStylist);
+        return View["form.cshtml", model];
+      };
       Post["/"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"], Request.Form["stylist-telephone"]);
         newStylist.Save();
@@ -81,6 +91,16 @@ namespace HairSalon
         Client toDelete = Client.Find(parameters.clientId);
         Stylist selectedStylist = Stylist.Find(parameters.stylistId);
         selectedStylist.DeleteClient(toDelete);
+        List<Client> selectedClients = selectedStylist.GetClients();
+        model.Add("clients", selectedClients);
+        model.Add("stylist", selectedStylist);
+        return View["stylist.cshtml", model];
+      };
+      Patch["/stylists/{stylistId}/clients/{clientId}/edit"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>{};
+        Stylist selectedStylist = Stylist.Find(parameters.stylistId);
+        Client selectedClient = Client.Find(parameters.clientId);
+        selectedClient.Update(Request.Form["client-name"], Request.Form["client-telephone"]);
         List<Client> selectedClients = selectedStylist.GetClients();
         model.Add("clients", selectedClients);
         model.Add("stylist", selectedStylist);

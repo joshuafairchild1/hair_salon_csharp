@@ -11,7 +11,7 @@ else
 {
   @foreach(var client in Model["clients"])
   {
-    <h3>@client.GetName() | <a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/edit'><span class="btn btn-xs btn-primary">Edit</span></a> | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/delete' method="post" class="inline-form"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-xs btn-danger">Delete</button></form></h3>
+    <h3>@client.GetName() | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/edit' class="inline-form"><input type="hidden" name="form-type" value="client-edit"><button type="submit" class="btn btn-xs btn-primary">Edit</button></form> | <form action='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()/delete' method="post" class="inline-form"><input type="hidden" name="_method" value="DELETE"><button type="submit" class="btn btn-xs btn-danger">Delete</button></form></h3>
     <h4>Telephone: @client.GetTelephone()</h4>
   }
 }
