@@ -101,7 +101,3 @@ namespace HairSalon.Objects
     }
   }
 }
-
-
-// System.Console.WriteLine($"Real: {newClient.GetName()}, {newClient.GetTelephone()}, {newClient.GetId()}, stylist id: {newClient.GetStylistId()}");
-// System.Console.WriteLine($"Found: {savedClient.GetName()}, {savedClient.GetTelephone()}, {savedClient.GetId()}, stylist id: {savedClient.GetStylistId()}");

@@ -180,7 +180,3 @@ namespace HairSalon.Objects
     }
   }
 }
-
-
-// System.Console.WriteLine($"Real: {newStylist.GetName()}, {newStylist.GetTelephone()}, {newStylist.GetId()}");
-// System.Console.WriteLine($"Found: {foundStylist.GetName()}, {foundStylist.GetTelephone()}, {foundStylist.GetId()}");
