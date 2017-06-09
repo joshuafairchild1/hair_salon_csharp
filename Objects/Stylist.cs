@@ -7,7 +7,7 @@ namespace HairSalon.Objects
   public class Stylist
   {
     private string _name;
-    string _telephone;
+    private string _telephone;
     private int _id;
 
     public Stylist(string name, string telephone, int id = 0)
