@@ -35,7 +35,9 @@ namespace HairSalon.Objects
     [Fact]
     public void Client_Save_SavesObjToDB()
     {
-      Client newClient = new Client("Tom Smith", "(555)-123-4567", 1);
+      Stylist newStylist = new Stylist("John Smith", "(123)-456-7890");
+      newStylist.Save();
+      Client newClient = new Client("Tom Smith", "(555)-123-4567", newStylist.GetId());
       newClient.Save();
 
       Client savedClient = Client.GetAll()[0];
@@ -71,3 +73,7 @@ namespace HairSalon.Objects
     }
   }
 }
+
+
+// System.Console.WriteLine($"Real: {newClient.GetName()}, {newClient.GetTelephone()}, {newClient.GetId()}, stylist id: {newClient.GetStylistId()}");
+// System.Console.WriteLine($"Found: {savedClient.GetName()}, {savedClient.GetTelephone()}, {savedClient.GetId()}, stylist id: {savedClient.GetStylistId()}");
