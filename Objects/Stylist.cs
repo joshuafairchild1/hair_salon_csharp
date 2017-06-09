@@ -163,5 +163,15 @@ namespace HairSalon.Objects
 
       return foundStylist;
     }
+
+    public void DeleteClients()
+    {
+
+    }
+
+    public List<Client> GetClients()
+    {
+      return null;
+    }
   }
 }
