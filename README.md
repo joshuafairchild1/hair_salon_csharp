@@ -34,8 +34,6 @@ The user is able to interact with the information they enter in several ways. Al
 
 #### Setup/Installation Requirements
 
-*Note: You must be able to setup a Kestrel server, have the [Nancy](http://nancyfx.org/) web framework installed, have a C# compiler such as [Mono](http://www.mono-project.com/docs/getting-started/install/) to run this application*
-
 * Install [Mono](http://www.mono-project.com/docs/getting-started/install/) or another C# compiler.
 
 * Install the [Nancy](http://nancyfx.org/) web framework.
@@ -44,7 +42,7 @@ The user is able to interact with the information they enter in several ways. Al
 
 * Clone this repository
 
- `git clone https://github.com/joshuafairchild1/hair_salon_csharp`
+  `git clone https://github.com/joshuafairchild1/hair_salon_csharp`
 
 * In PowerShell, run the following commands:
 
